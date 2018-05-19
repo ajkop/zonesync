@@ -91,10 +91,9 @@ class Synczones():
         return self.rcompdict
 
     def executecompare(self):
-        sz = Synczones()
-        szl = sz.getlocaldict()
+        szl = self.getlocaldict()
         for host in self.ns_list:
-            szr = sz.getremotedict(host)
+            szr = self.getremotedict(host)
             for key, value in szl.items():
                 if szr[key] != szl[key]:
                     os.system("rsync -avP {0} root@{1}:/var/named".format(key,host))
