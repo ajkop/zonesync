@@ -62,7 +62,7 @@ class Synczones():
         self.compdict = {}
         for zone in self.getzonelist():
             stamp = os.stat("{0}".format(zone)).st_mtime
-            filehash = Synczones().gethash(zone)
+            filehash = self.gethash(zone)
             self.complist.append(int(stamp))
             self.complist.append(str(filehash))
             self.compdict.update({ zone : self.complist})
