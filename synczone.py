@@ -62,7 +62,7 @@ class Synczones():
         self.compdict = {}
         for zone in self.getzonelist():
             stamp = os.stat("{0}".format(zone)).st_mtime
-            filehash = Synczones().gethash(zone)
+            filehash = self.gethash(zone)
             self.complist.append(int(stamp))
             self.complist.append(str(filehash))
             self.compdict.update({ zone : self.complist})
@@ -91,10 +91,9 @@ class Synczones():
         return self.rcompdict
 
     def executecompare(self):
-        sz = Synczones()
-        szl = sz.getlocaldict()
+        szl = self.getlocaldict()
         for host in self.ns_list:
-            szr = sz.getremotedict(host)
+            szr = self.getremotedict(host)
             for key, value in szl.items():
                 if szr[key] != szl[key]:
                     os.system("rsync -avP {0} root@{1}:/var/named".format(key,host))
