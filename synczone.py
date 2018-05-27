@@ -106,7 +106,7 @@ class Synczones():
                     else:
                         print "Zone {0} on {1} is fine".format(key,host)
 
-# If script is run from shell, do the followibng.
+# If script is run from shell, do the following 
 if __name__ == "__main__":
     app = Synczones()
     if app.args.q:
